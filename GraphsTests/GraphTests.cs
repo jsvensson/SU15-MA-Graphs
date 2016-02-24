@@ -56,5 +56,39 @@ namespace Graphs.Tests
 
 			Assert.IsTrue( neighbours.Count == 1 && neighbours[0] == 103 );
 		}
+
+		// Testa DoDFS()
+
+		[TestMethod]
+		public void DoDFS__4_Nodes__3_Edges__Is_Connected()
+		{
+			Graph graph = new Graph(4);
+
+			graph.AddEdges(
+				new uint[3, 2] { {0,1}, {1,2}, {2,3} }
+			);
+
+			Assert.IsTrue(graph.DoDFS());
+		}
+
+		[TestMethod]
+		public void DoDFS__4_Nodes__3_Edges__Is_Not_Connected()
+		{
+			Graph graph = new Graph(4);
+
+			graph.AddEdges(
+				new uint[3, 2] { { 0, 1 }, { 1, 1 }, { 2, 3 } }
+			);
+
+			Assert.IsFalse(graph.DoDFS());
+		}
+
+		[TestMethod]
+		public void DoDFS__4_Nodes__0_Edges__Is_Not_Connected()
+		{
+			Graph graph = new Graph(4);
+			Assert.IsFalse(graph.DoDFS());
+		}
+
 	}
 }

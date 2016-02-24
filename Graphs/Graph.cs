@@ -107,7 +107,36 @@ namespace Graphs
 				);
 			}
 
-			return true;
+			Stack<uint> stack = new Stack<uint>();
+			bool[] visited = new bool[NrNodes];
+
+			stack.Push(startNode);
+
+			while (stack.Count > 0)
+			{
+				uint currentNode = stack.Pop();
+
+				if (!visited[currentNode])
+				{
+					List<uint> neighbors = GetNeighbours(currentNode);
+					visited[currentNode] = true;
+					foreach (uint neighbor in neighbors)
+					{
+						stack.Push(neighbor);
+					}
+				}
+			}
+
+			bool isConnected = true;
+			foreach (bool v in visited)
+			{
+				if (v == false)
+				{
+					isConnected = false;
+					break;
+				}
+			}
+			return isConnected;
 		}
 
 		public static void Main()

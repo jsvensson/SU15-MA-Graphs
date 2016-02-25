@@ -107,11 +107,11 @@ namespace Graphs.Tests
 		}
 
 		[TestMethod]
-		public void DoDFS__4_Nodes__3_Edges__Has_Loop()
+		public void DoDFS__3_Nodes__3_Edges__Has_Loop()
 		{
-			Graph graph = new Graph(4);
+			Graph graph = new Graph(3);
 			graph.AddEdges(
-				new uint[4, 2] { {0, 1}, {1, 2}, {2, 3}, {3, 0} }
+				new uint[3, 2] { {0, 1}, {1, 2}, {2, 0} }
 			);
 
 			Graph.DoDFSReturn result = graph.DoDFS();

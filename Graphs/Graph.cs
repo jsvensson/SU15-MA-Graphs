@@ -139,6 +139,7 @@ namespace Graphs
 					if (visitedNeighborCount >= 2)
 					{
 						result.hasLoop = true;
+					}
 				}
 			}
 

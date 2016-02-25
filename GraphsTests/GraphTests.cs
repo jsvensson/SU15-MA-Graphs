@@ -129,5 +129,19 @@ namespace Graphs.Tests
 			Graph.DoDFSReturn result = graph.DoDFS();
 			Assert.IsTrue(result.hasLoop);
 		}
+
+		[TestMethod]
+		public void DoDFS__9_nodes__8_Edges__Has_No_Loop__Has_Orphans()
+		{
+			Graph graph = new Graph(9);
+			graph.AddEdges(
+				new uint[8,2]
+				{
+					{0, 1}, {1, 2}, {2, 3}, {2, 8}, {3, 4}, {4, 5}, {4, 6}, {4, 7}
+				}
+			);
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsFalse(result.hasLoop);
+		}
 	}
 }

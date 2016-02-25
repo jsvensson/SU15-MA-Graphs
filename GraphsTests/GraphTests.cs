@@ -24,8 +24,8 @@ namespace Graphs.Tests
 
 			Assert.IsTrue(
 				neighbours.Count == 2 &&
-				neighbours.Contains( 0 ) &&
-				neighbours.Contains( 2 )
+				neighbours.Contains(0) &&
+				neighbours.Contains(2)
 			);
 		}
 
@@ -52,9 +52,9 @@ namespace Graphs.Tests
 				new uint[1, 2] { { 103, 103 } }
 			);
 
-			List<uint> neighbours = graph.GetNeighbours( 103 );
+			List<uint> neighbours = graph.GetNeighbours(103);
 
-			Assert.IsTrue( neighbours.Count == 1 && neighbours[0] == 103 );
+			Assert.IsTrue(neighbours.Count == 1 && neighbours[0] == 103);
 		}
 
 		// Testa DoDFS()

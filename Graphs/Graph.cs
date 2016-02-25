@@ -12,8 +12,8 @@ namespace Graphs
 
 		public struct DoDFSReturn
 		{
-			bool hasLoop;
-			bool isConnected;
+			public bool hasLoop;
+			public bool isConnected;
 		}
 
 		private uint nrNodes;

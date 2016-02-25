@@ -136,7 +136,9 @@ namespace Graphs
 						stack.Push(neighbor);
 					}
 					// Besökt 2+ grannar?
-					result.hasLoop = visitedNeighborCount >= 2;
+					if (visitedNeighborCount >= 2)
+					{
+						result.hasLoop = true;
 				}
 			}
 

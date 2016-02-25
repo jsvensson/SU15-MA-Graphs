@@ -57,7 +57,7 @@ namespace Graphs.Tests
 			Assert.IsTrue(neighbours.Count == 1 && neighbours[0] == 103);
 		}
 
-		// Testa DoDFS()
+		// Testa DoDFS() isConnected
 
 		[TestMethod]
 		public void DoDFS__4_Nodes__3_Edges__Is_Connected()
@@ -65,7 +65,7 @@ namespace Graphs.Tests
 			Graph graph = new Graph(4);
 
 			graph.AddEdges(
-				new uint[3, 2] { {0,1}, {1,2}, {2,3} }
+				new uint[3, 2] { {0, 1}, {1, 2}, {2, 3} }
 			);
 
 			Graph.DoDFSReturn result = graph.DoDFS();
@@ -73,12 +73,12 @@ namespace Graphs.Tests
 		}
 
 		[TestMethod]
-		public void DoDFS__4_Nodes__3_Edges__Is_Not_Connected()
+		public void DoDFS__4_Nodes__2_Edges__Is_Not_Connected()
 		{
 			Graph graph = new Graph(4);
 
 			graph.AddEdges(
-				new uint[3, 2] { { 0, 1 }, { 1, 1 }, { 2, 3 } }
+				new uint[2, 2] { {0, 1}, {2, 3} }
 			);
 			Graph.DoDFSReturn result = graph.DoDFS();
 			Assert.IsFalse(result.isConnected);
@@ -92,8 +92,10 @@ namespace Graphs.Tests
 			Assert.IsFalse(result.isConnected);
 		}
 
+		// Testa DoDFS() hasLoop
+
 		[TestMethod]
-		public void DoDFS__4_Nodes__3_Edges__No_Loop()
+		public void DoDFS__4_Nodes__3_Edges__Has_No_Loop()
 		{
 			Graph graph = new Graph(4);
 			graph.AddEdges(
@@ -109,14 +111,23 @@ namespace Graphs.Tests
 		{
 			Graph graph = new Graph(4);
 			graph.AddEdges(
-				new uint[4, 2] { { 0, 1 }, { 1, 2 }, { 2, 3 }, {3, 0} }
+				new uint[4, 2] { {0, 1}, {1, 2}, {2, 3}, {3, 0} }
 			);
 
 			Graph.DoDFSReturn result = graph.DoDFS();
 			Assert.IsTrue(result.hasLoop);
 		}
 
+		[TestMethod]
+		public void DoDFS__8_Nodes__5_Edges__Has_Loop__Has_Orphans()
+		{
+			Graph graph = new Graph(8);
+			graph.AddEdges(
+				new uint[8, 2] { {0, 1}, {1, 2}, {2, 3}, {3, 0}, {0, 4}, {1, 5}, {2, 6}, {3, 7} }
+			);
 
-
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsTrue(result.hasLoop);
+		}
 	}
 }

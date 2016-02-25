@@ -96,7 +96,7 @@ namespace Graphs
 			}
 		}
 
-		public bool DoDFS( uint startNode = 0 )
+		public DoDFSReturn DoDFS( uint startNode = 0 )
 		{
 			if (startNode>= this.NrNodes)
 			{
@@ -112,9 +112,15 @@ namespace Graphs
 
 			stack.Push(startNode);
 
+			DoDFSReturn result = new DoDFSReturn
+			{
+				isConnected = true
+			};
+
 			while (stack.Count > 0)
 			{
 				uint currentNode = stack.Pop();
+				int visitedNeighborCount = 0;
 
 				if (!visited[currentNode])
 				{
@@ -122,21 +128,29 @@ namespace Graphs
 					visited[currentNode] = true;
 					foreach (uint neighbor in neighbors)
 					{
+						// Är grannen besökt?
+						if (visited[neighbor])
+						{
+							visitedNeighborCount++;
+						}
 						stack.Push(neighbor);
 					}
+					// Besökt 2+ grannar?
+					result.hasLoop = visitedNeighborCount >= 2;
 				}
 			}
 
-			bool isConnected = true;
+			// Besökt alla noder?
 			foreach (bool v in visited)
 			{
 				if (v == false)
 				{
-					isConnected = false;
+					result.isConnected = false;
 					break;
 				}
 			}
-			return isConnected;
+
+			return result;
 		}
 
 		public static void Main()

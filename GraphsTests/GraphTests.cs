@@ -68,7 +68,8 @@ namespace Graphs.Tests
 				new uint[3, 2] { {0,1}, {1,2}, {2,3} }
 			);
 
-			Assert.IsTrue(graph.DoDFS());
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsTrue(result.isConnected);
 		}
 
 		[TestMethod]
@@ -79,16 +80,43 @@ namespace Graphs.Tests
 			graph.AddEdges(
 				new uint[3, 2] { { 0, 1 }, { 1, 1 }, { 2, 3 } }
 			);
-
-			Assert.IsFalse(graph.DoDFS());
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsFalse(result.isConnected);
 		}
 
 		[TestMethod]
 		public void DoDFS__4_Nodes__0_Edges__Is_Not_Connected()
 		{
 			Graph graph = new Graph(4);
-			Assert.IsFalse(graph.DoDFS());
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsFalse(result.isConnected);
 		}
+
+		[TestMethod]
+		public void DoDFS__4_Nodes__3_Edges__No_Loop()
+		{
+			Graph graph = new Graph(4);
+			graph.AddEdges(
+				new uint[3, 2] { {0,1}, {1,2}, {2,3} }
+			);
+
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsFalse(result.hasLoop);
+		}
+
+		[TestMethod]
+		public void DoDFS__4_Nodes__3_Edges__Has_Loop()
+		{
+			Graph graph = new Graph(4);
+			graph.AddEdges(
+				new uint[4, 2] { { 0, 1 }, { 1, 2 }, { 2, 3 }, {3, 0} }
+			);
+
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsTrue(result.hasLoop);
+		}
+
+
 
 	}
 }

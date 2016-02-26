@@ -80,6 +80,7 @@ namespace Graphs.Tests
 			graph.AddEdges(
 				new uint[2, 2] { {0, 1}, {2, 3} }
 			);
+
 			Graph.DoDFSReturn result = graph.DoDFS();
 			Assert.IsFalse(result.isConnected);
 		}
@@ -89,6 +90,7 @@ namespace Graphs.Tests
 		{
 			Graph graph = new Graph(4);
 			Graph.DoDFSReturn result = graph.DoDFS();
+
 			Assert.IsFalse(result.isConnected);
 		}
 
@@ -140,6 +142,7 @@ namespace Graphs.Tests
 					{0, 1}, {1, 2}, {2, 3}, {2, 8}, {3, 4}, {4, 5}, {4, 6}, {4, 7}
 				}
 			);
+
 			Graph.DoDFSReturn result = graph.DoDFS();
 			Assert.IsFalse(result.hasLoop);
 		}

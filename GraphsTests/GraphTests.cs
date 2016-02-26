@@ -146,5 +146,20 @@ namespace Graphs.Tests
 			Graph.DoDFSReturn result = graph.DoDFS();
 			Assert.IsFalse(result.hasLoop);
 		}
+
+		[TestMethod]
+		public void DoDFS__Pentagram()
+		{
+			Graph graph = new Graph(9);
+			graph.AddEdges(
+				new uint[10, 2]
+				{
+					{0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 0}, {0, 2}, {2, 4}, {4, 1}, {1, 3}, {3, 0}
+				}
+			);
+
+			Graph.DoDFSReturn result = graph.DoDFS();
+			Assert.IsTrue(result.hasLoop);
+		}
 	}
 }

@@ -128,14 +128,14 @@ namespace Graphs
 					visited[currentNode] = true;
 					foreach (uint neighbor in neighbors)
 					{
-						// Är grannen känd?
+						// Known neighbor?
 						if (visited[neighbor])
 						{
 							visitedNeighborCount++;
 						}
 						stack.Push(neighbor);
 					}
-					// Har noden 2+ kända grannar?
+					// Does the node have 2+ known neighbors?
 					if (visitedNeighborCount >= 2)
 					{
 						result.hasLoop = true;
@@ -143,7 +143,7 @@ namespace Graphs
 				}
 			}
 
-			// Besökt alla noder?
+			// Visited all nodes?
 			foreach (bool v in visited)
 			{
 				if (v == false)
